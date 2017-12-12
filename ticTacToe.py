@@ -1,5 +1,5 @@
 """
-TIC TAC TOE
+ticTacToe
 """
 
 def store_names():
@@ -49,14 +49,14 @@ def is_row(grid, token, first, second, third):
 def check_win(grid, token):
     player_won = False
 
-    if (is_row(grid, token, 0, 1, 2) or \
+    if is_row(grid, token, 0, 1, 2) or \
         is_row(grid, token, 3, 4, 5) or \
         is_row(grid, token, 6, 7, 8) or \
         is_row(grid, token, 0, 3, 6) or \
         is_row(grid, token, 1, 4, 7) or \
         is_row(grid, token, 2, 5, 8) or \
         is_row(grid, token, 0, 4, 8) or \
-        is_row(grid, token, 6, 4, 2)):
+        is_row(grid, token, 6, 4, 2):
         player_won = True
 
     return player_won
@@ -79,7 +79,6 @@ def run():
         current_token = token_map[current_player]
         grid = place_symbol(grid, current_player, current_token)
         display_game_board(grid)
-
 
         player_won = check_win(grid, current_token)
         if player_won:

@@ -37,11 +37,23 @@ def create_game_grid():
         numbers.append(str(i))
     return numbers
 
-def place_symbol(grid, player, token_map):
+def place_symbol(grid, player, token):
     input_square = int(input(player + ', select from 1-9 the spot you would like to choose.'))
     # do checks - come back to this
-    grid[input_square-1] = token_map[player]
+    grid[input_square-1] = token
     return grid
+
+def is_row(grid, token, first, second, third):
+    return grid[first] == token and grid[second] == token and grid[third] == token
+
+def check_win(grid, token):
+    player_won = False
+
+    if (is_row(grid, token, 0, 1, 2) or is_row(grid, token, 3, 4, 5) or is_row(grid, token, 6, 7, 8)):
+        # add checks for diagonals
+        player_won = True
+
+    return player_won
 
 def run():
     grid = create_game_grid()
@@ -58,8 +70,16 @@ def run():
         else:
             current_player = player_X
 
-        grid = place_symbol(grid, current_player, token_map)
+        current_token = token_map[current_player]
+        grid = place_symbol(grid, current_player, current_token)
         display_game_board(grid)
+        
+
+        player_won = check_win(grid, current_token)
+        if player_won:
+            print(current_player + ' won the game!')
+            return
+        
 
 if __name__ == '__main__':
     run()

@@ -1,23 +1,13 @@
 """
-ticTacToe
+TicTacToe
+
+This is a small game between 2 players.
 """
 
 def store_names():
     player_0 = input('Who will be naughts? ')
     player_X = input('Who will be crosses? ')
     return player_0, player_X
-
-def display_game_board():
-    i = 1
-    while i < 10:
-        print('-------------')
-        row_count = 0
-        while row_count < 3:
-            print('| ' + str(i) + ' ', end='')
-            row_count = row_count + 1
-            i = i + 1
-        print('|')
-    print('-------------')
 
 def display_game_board(grid):
     print('-' * 13)
@@ -37,10 +27,19 @@ def create_game_grid():
         numbers.append(str(i))
     return numbers
 
+def check_valid_move(input_square, grid):
+    return grid[input_square] != 'X' and grid[input_square] != 'O'
+
 def place_symbol(grid, player, token):
-    input_square = int(input(player + ', select from 1-9 the spot you would like to choose.'))
-    # do checks - come back to this
-    grid[input_square-1] = token
+    input_square = int(input(player + ', select from 1-9 the spot you would like to choose.')) - 1
+    is_valid = check_valid_move(input_square, grid)
+
+    while not is_valid:
+        print("Sorry, that was not a valid move, please try again.")
+        input_square = int(input(player + ', select from 1-9 the spot you would like to choose.')) - 1
+        is_valid = check_valid_move(input_square, grid)
+
+    grid[input_square] = token
     return grid
 
 def is_row(grid, token, first, second, third):

@@ -83,9 +83,9 @@ def place_symbol(grid, player, token):
     grid[input_square] = token
     return grid
 
-def is_row(grid, token, first, second, third):
+def token_matches(grid, token, first, second, third):
     """
-    Checks if the tokens are all in a row.
+    Checks if the tokens match the correct squares
     """
     return grid[first] == token and grid[second] == token and grid[third] == token
 
@@ -95,14 +95,14 @@ def check_win(grid, token):
     """
     player_won = False
 
-    if is_row(grid, token, 0, 1, 2) or \
-        is_row(grid, token, 3, 4, 5) or \
-        is_row(grid, token, 6, 7, 8) or \
-        is_row(grid, token, 0, 3, 6) or \
-        is_row(grid, token, 1, 4, 7) or \
-        is_row(grid, token, 2, 5, 8) or \
-        is_row(grid, token, 0, 4, 8) or \
-        is_row(grid, token, 6, 4, 2):
+    if token_matches(grid, token, 0, 1, 2) or \
+        token_matches(grid, token, 3, 4, 5) or \
+        token_matches(grid, token, 6, 7, 8) or \
+        token_matches(grid, token, 0, 3, 6) or \
+        token_matches(grid, token, 1, 4, 7) or \
+        token_matches(grid, token, 2, 5, 8) or \
+        token_matches(grid, token, 0, 4, 8) or \
+        token_matches(grid, token, 6, 4, 2):
         player_won = True
 
     return player_won

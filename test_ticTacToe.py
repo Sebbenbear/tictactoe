@@ -59,9 +59,9 @@ class TestTicTacToe(unittest.TestCase):
         token = 'X'
         grid[2] = token
         grid[5] = token
-        grid[8] = token
+        grid[1] = token
         actual = ticTacToe.check_win(grid, token)
-        self.assertTrue(actual)
+        self.assertFalse(actual)
 
 if __name__ == '__main__':
     unittest.main()

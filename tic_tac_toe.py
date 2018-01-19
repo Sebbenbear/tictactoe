@@ -1,5 +1,5 @@
 """
-TicTacToe
+Tic Tac Toe
 
 This is a small Tic Tac Toe game between 2 players.
 """

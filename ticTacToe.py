@@ -51,7 +51,7 @@ def is_valid_move(input_square, grid):
     """
     return grid[input_square] != 'X' and grid[input_square] != 'O'
 
-def get_user_input(player, grid):
+def get_user_input(player, token, grid):
     """
     Get user input from the player, and ensure it is both a valid number, and
     can be put on a valid place on the board.
@@ -59,7 +59,7 @@ def get_user_input(player, grid):
     is_valid = False
     while not is_valid:
         try:
-            input_square = int(input(player + ', select from 1-9 the spot you would like to choose.')) - 1
+            input_square = int(input(player + " (" + token + ")" + ', select from 1-9 the spot you would like to choose: ')) - 1
             if not is_valid_number(input_square):
                 print("That's not a valid number on the game board. Try again.")
                 continue
@@ -79,7 +79,7 @@ def place_symbol(grid, player, token):
     """
     Places the player's symbol on the board.
     """
-    input_square = get_user_input(player, grid)
+    input_square = get_user_input(player, token, grid)
     grid[input_square] = token
     return grid
 

@@ -1,3 +1,7 @@
+"""
+Tests for Tic Tac Toe module
+"""
+
 import unittest
 import ticTacToe
 
@@ -8,7 +12,7 @@ class TestTicTacToe(unittest.TestCase):
         expected = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         actual = ticTacToe.create_game_grid()
         self.assertEqual(expected, actual)
-        
+
     # Test is_valid_number
     def test_is_valid_number_success_0(self):
         actual = ticTacToe.is_valid_number(0)
@@ -60,6 +64,25 @@ class TestTicTacToe(unittest.TestCase):
         grid[5] = token
         grid[1] = token
         actual = ticTacToe.check_win(grid, token)
+        self.assertFalse(actual)
+
+    # Check if the tokens are in a row
+    def test_token_matches_success_0(self):
+        grid = ticTacToe.create_game_grid()
+        token = 'X'
+        grid[0] = token
+        grid[4] = token
+        grid[8] = token
+        actual = ticTacToe.token_matches(grid, token, 0, 4, 8)
+        self.assertTrue(actual)
+
+    def test_token_matches_fail_0(self):
+        grid = ticTacToe.create_game_grid()
+        token = 'X'
+        grid[0] = token
+        grid[5] = token
+        grid[1] = 'O'
+        actual = ticTacToe.token_matches(grid, token, 0, 5, 1)
         self.assertFalse(actual)
 
 if __name__ == '__main__':
